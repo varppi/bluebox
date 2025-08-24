@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, resp: NextApiResponse
         const { masterpassword } = req.body; 
         if (!await isValidAltchaSolution(req.body)) return resp.status(403).json({"message": "invalid captcha"});
         if ((process.env.MASTER_PASSWORD ?? "").length > 0 && masterpassword !== process.env.MASTER_PASSWORD) return resp.status(403).json({"message": "invalid master password"});
-        
+
         const secretID = uuidv4();
         await prisma.user.create({
             data: {

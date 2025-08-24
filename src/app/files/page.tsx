@@ -18,8 +18,14 @@ interface File {
 }
 
 export default function Login() {
-    const params = useSearchParams();
-    const [page, setPage] = useState<number>(parseInt(params?.get("page") ?? "0"));
+    let curPage = 0;
+    try {
+        const splits = window.location.href.split("?page=");
+        if (splits.length > 1) {
+            curPage = parseInt(splits[1])
+        }
+    }catch {}
+    const [page, setPage] = useState<number>(curPage);
     const [maxPages, setMaxPages] = useState(1);
     const [files, setFiles] = useState<File[]>([]);
     const [blockBackground, setBlockBackground] = useState(<></>);

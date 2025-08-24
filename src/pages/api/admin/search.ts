@@ -28,7 +28,7 @@ export default async function handler(req: NextApiRequest, resp: NextApiResponse
             },
         });
 
-        let parsedFileResults: File[] = [];
+        const parsedFileResults: File[] = [];
         fileResult.forEach(x => parsedFileResults.push({
             id: x.id,
             created: x.created,

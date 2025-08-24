@@ -173,7 +173,7 @@ export default function Page() {
     // End of admin
 
     const modals: Modals = {
-        "uploadFile": <div className="modal d-block" style={{zIndex: "1001"}}>
+        "uploadFile": <div className="modal d-block overflow-hidden" style={{zIndex: "1001"}}>
             <div className="modal-dialog">
                 <div className="modal-content semi-transparent-box p-3 gap-3">
                     <h1 className="text-white m-0">Upload file</h1>
@@ -284,6 +284,7 @@ export default function Page() {
         "files": <div className="w-100 d-flex justify-content-center">
             <div className="d-flex flex-column semi-transparent-box p-3 w-100" style={{maxWidth: "1000px"}}>
                 <h3 style={{borderBottom: "2px solid white", borderColor: darkMode ? "white" : "var(--bs-primary)"}} className="mb-3">Your Files</h3>
+                <Button onClick={()=>{setModal("uploadFile")}} className="bg-primary text-white mt-3">Upload New File</Button>
                 {
                     files.map(file => <div key={file.id} className="d-flex flex-column border-bottom mt-4">
                         <div className="d-flex w-100">
@@ -300,7 +301,6 @@ export default function Page() {
                         </div>
                     </div>)
                 }
-                <Button onClick={()=>{setModal("uploadFile")}} className="bg-primary text-white mt-3">Upload New File</Button>
             </div>
         </div>
     }
@@ -327,7 +327,7 @@ export default function Page() {
                 {
                     (modal??"").length > 0 
                     ? <>
-                        <div style={{top: "0", height: "100vh", width: "100vw", position: "absolute", backgroundColor: "black", zIndex: "1000", opacity: "0.75"}}></div>
+                        <div style={{top: "0", height: "100vh", width: "100vw", position: "fixed", backgroundColor: "black", zIndex: "1000", opacity: "0.75"}}></div>
                         {modals[modal??""]}
                     </>
                     : <></>

@@ -6,6 +6,7 @@ import { FormEvent, useEffect, useState } from "react";
 try {
     require("altcha");
 }catch {}
+
 import Footer from "../footer";
 import Header from "../header";
 
@@ -32,7 +33,6 @@ export default function Login() {
         const jsonResult = await result.json();
 
         if (result.ok) { 
-            console.log(jsonResult);
             localStorage.setItem("isadmin", jsonResult.isadmin ? "yes" : "no");
             localStorage.setItem("loggedin", "yes");
             window.location.replace("/dashboard");

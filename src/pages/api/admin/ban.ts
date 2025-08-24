@@ -7,7 +7,6 @@ const prisma = new PrismaClient();
 export default async function handler(req: NextApiRequest, resp: NextApiResponse) {
     const payload = await jwtVerify(req.cookies.token ?? "");
     if (payload === null || payload.id !== process.env.ADMIN_ID) return resp.status(403).json({"message": "access denied"});
-    const userId: string = payload.id as string;
 
     const { id } = req.body;
 

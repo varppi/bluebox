@@ -19,7 +19,6 @@ export default function Header() {
     } 
     useEffect(() => {
         getLocalState().then(darkMode => {
-            console.log(darkMode)
             updateDarkMode(darkMode);
             toggleDarkMode();
             toggleDarkMode();
