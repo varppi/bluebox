@@ -1,0 +1,28 @@
+.frontbutton {
+    border-radius: 50px !important;
+    border: none !important;
+    background-color: var(--bs-primary) !important;
+    color: white !important;
+    max-width: 175px !important;
+    width: 100% !important;
+    text-transform: uppercase !important;
+    font-size: 100% !important;
+}
+
+.frontbutton_main {
+    background: linear-gradient(180deg, rgb(255, 162, 162) 0%, rgb(255, 50, 50) 100%);
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.title {
+    font-size: 100px !important;
+    margin-bottom: -10px !important;
+}
+
+
+@media (max-width: 900px) {
+    .title {
+        font-size: 80px !important;
+        margin-bottom: 5px !important;
+    }
+}

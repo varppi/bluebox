@@ -1,0 +1,2 @@
+docker run --name bluebox-mongo -d -p 27017:27017 mongo:latest mongod --replSet rs
+docker exec -d bluebox-mongo mongosh --eval "rs.initiate({_id: 'rs', members: [{_id: 0, host: 'localhost:27017'}]})"

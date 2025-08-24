@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+$primary: rgb(79, 79, 224);
+$body-bg: rgb(255, 255, 255);
+
+@mixin lilita-bold {
+    font-family: "Lilita One", sans-serif;
+    font-weight: 900 !important;
+    font-style: normal;
+}
+
+@mixin lilita-semibold {
+    font-family: "Lilita One", sans-serif;
+    font-weight: 700 !important;
+    font-style: normal;
+}
+
+@mixin lilita-regular {
+    font-family: "Lilita One", sans-serif;
+    font-weight: 500 !important;
+    font-style: normal;
+}
+
+altcha-widget {
+    --altcha-border-width: 0;
+    --altcha-border-radius: 0;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 2px rgba(105, 105, 105, 0.25);
+    width: 100%;
+    max-width: 250px;
+}
+
+h1,h2,h3,h4 {
+    @include lilita-bold();
+    text-transform: uppercase;
+}
+
+.smooth-primary {
+    color: white !important;
+    background-color: $primary !important;
+    border-radius: 25px !important;
+}
+
+.nav-button {
+    min-width: fit-content !important;
+    border-radius: 25px !important;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: $primary;
+} 
+
+.text-grad-wblue-blue {
+    background: linear-gradient(180deg, rgb(215, 218, 255) 0%, $primary 60%);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+
+.text-grad-dblue-blue {
+    background: linear-gradient(180deg, rgb(9, 14, 75) 0%, $primary 60%);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+
+
+.bg-semidark {
+    background-color: rgb(44, 44, 68);
+}
+
+.grad-wblue-blue {
+    background: linear-gradient(180deg, rgb(215, 218, 255) 0%, $primary 60%);
+}
+
+.wave {
+    --size: 25px;
+    --m: 3;
+    --p: calc(var(--m)*var(--size));
+    --R: calc(var(--size)*sqrt(var(--m)*var(--m) + 1));
+  
+    mask:
+      radial-gradient(var(--R) at 50% calc(100% - (var(--size) + var(--p))), #000 99%, #0000 101%)
+        calc(50% - 2 * var(--size)) 0/calc(4 * var(--size)) 100%,
+      radial-gradient(var(--R) at 50% calc(100% + var(--p)), #0000 99%, #000 101%) 
+        50% calc(100% - var(--size)) / calc(4 * var(--size)) 100% repeat-x;
+    transform: rotate(180deg);
+    margin-bottom: 40px;
+    height: 40px;
+}
+
+.bigtext {
+    font-size: 25px;
+}
+
+.margin-left-50-900 {
+    margin-left: 10vw;
+}
+
+.semi-transparent-box {
+    border-radius: 25px;
+    box-shadow: 0 0 2px rgba(128, 128, 128, 0.25);
+    backdrop-filter: blur(10px);
+    background: none !important;
+    border: none !important;
+}
+
+.semi-transparent-box-nocollapse {
+    border-radius: 25px;
+    box-shadow: 0 0 2px rgba(128, 128, 128, 0.25);
+    backdrop-filter: blur(10px);
+    background: none !important;
+    border: none !important;
+}
+.files-buttons {
+    width: 25%;
+}
+.filerepo-text {
+    margin: 0;
+}
+.small-label {
+    display: none;
+}
+
+
+.dash-nav-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+
+@media (max-width: 900px) {
+    .dash-nav {
+        flex-direction: column;
+    }
+    .dash-nav-buttons {
+        border-radius: 50px !important;
+        flex-direction: row !important;
+    }
+    .bigtext {
+        font-size: 20px;
+    }
+    .collapse-900 {
+        flex-direction: column;
+        * {
+            width: 100% !important;
+        }
+    }
+    .margin-left-50-900 {
+        margin-left: 0;
+    }
+    .hide-900 {
+        display: none;
+    }
+    .semi-transparent-box {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    .files-text {
+        font-size: 15px !important;
+    }
+    .files-buttons {
+        width: 50%;
+    }
+    .filerepo-list {
+        flex-direction: column;
+        * {
+            width: 100% !important;
+        }
+        .small-label {
+            display: inline;
+        }
+        margin-block: 5px;
+    }
+    .filerepo-big-labels {
+        display: none !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    .smallen-300-1200 {
+        width: 300px !important;
+    }
+    .hide-1200 {
+        display: none;
+    }
+}
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
