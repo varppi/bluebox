@@ -21,8 +21,8 @@ Bluebox is a self hostable file hosting site/service, which doesn't require emai
 - [x] **Basic features (upload, download, login, logout, register, delete account)**
 - [x] **Admin account and it's basic features (banning, deleting files etc)**
 - [ ] **Admin can change max upload size and max amount of files per acco**
-- [ ] **Admin can change captcha hardness level**
-- [ ] **Admin can make downloads require captcha**
+- [x] **Admin can change captcha hardness level**
+- [x] **Admin can make downloads require captcha**
 - [x] **Paged results**
 - [ ] **2FA**
 - [ ] **Comments**
@@ -58,7 +58,8 @@ npm run start
 - **ADMIN_ID:** If you want to moderate the site you can do it by setting this to your user id. (found by copy pasting your session token into jwt.io and getting the 'id' field). eg. `ADMIN_ID="4004591c-22ce-4569-805f-15fa7799ea37"`
 - **MASTER_PASSWORD:** Sets a master password everyone who tries to register must have. Prevents random people from signing up. eg. `MASTER_PASSWORD="helloworld"`
 - **DEFAULT_THEME:** Default theme for users. eg. `DEFAULT_THEME=light` or `dark`
-
+- **DOWNLOAD_CAPTCHA:** Enable or disable needing to complete a captcha before downloading a file. eg. `DOWNLOAD_CAPTCHA=true` or `false`
+- **CAPTCHA_DIFFICULTY:** Changes how long the captcha takes. The bigger the number, the more time it will take. eg. `CAPTCHA_DIFFICULTY=500000`
 
 ## Security
 I have fixed all the bugs I could, but the nature of this project makes it inherently more susceptible to security vulnerabilities. With that being said, I created the whole project with the idea of "I'm going to make a file hosting service that stores so little information it won't matter if it's breached" so please treat the service as compromised from the beginning, because that's a sure way you can avoid getting anything of value leaked. It is **NOT** a cloud backup service, it is **NOT** a personal file vault, it is a gateway to get whatever you have on your computer in front of the entire internet. 

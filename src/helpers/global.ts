@@ -19,7 +19,7 @@ export const ALTCHA_HMAC_KEY: string = process.env.ALTCHA_HMAC_KEY || randomByte
 
 export const getSettings = async() => {
     const out = await fetch("/api/settings");
-    const outJson: {masterpassword: boolean, defaultheme: string} = await out.json();
+    const outJson: {masterpassword: boolean, defaultheme: string, downloadcaptcha: boolean} = await out.json();
     return outJson;
 } 
 export const isAdmin = () => {

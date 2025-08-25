@@ -63,7 +63,7 @@ export default async function handler(req: NextApiRequest, resp: NextApiResponse
                 break;
         }
     }catch(e: any) {
-        if (process.env.DEBUG) {
+        if (process.env.DEBUG === "true") {
             resp.status(500).json({"message": e.message});
             return;
         }

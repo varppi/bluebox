@@ -1,10 +1,16 @@
 import { PrismaClient } from "@/generated/prisma";
+import { isValidAltchaSolution } from "@/helpers/altcha";
 import { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server"
 
 const prisma = new PrismaClient();
 
 export default async function GET(req: NextApiRequest, resp: NextApiResponse) {
+    if (process.env.DOWNLOAD_CAPTCHA === "true") {
+        const payload:{altcha: string} = {altcha: req.query.altcha === undefined || req.query.altcha === null ? "" : req.query.altcha.toString()};
+        if (!await isValidAltchaSolution(payload)) return resp.status(403).json({"message": "invalid captcha"});
+    }
+
     const file = await prisma.file.findFirst({
         where: {
             id: req.query.id as string,

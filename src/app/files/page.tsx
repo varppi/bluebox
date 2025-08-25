@@ -8,7 +8,7 @@ try {
 }catch {}
 import Footer from "../footer";
 import Header from "../header";
-import { DarkMode } from "@/helpers/global";
+import { DarkMode, getSettings } from "@/helpers/global";
 import { useParams, useSearchParams } from "next/navigation";
 
 interface File {
@@ -25,13 +25,18 @@ export default function Login() {
             curPage = parseInt(splits[1])
         }
     }catch {}
+    const [downloadCaptcha, setDownloadCaptcha] = useState(false);
+    const [verification, setVerification] = useState<string>("");
     const [page, setPage] = useState<number>(curPage);
     const [maxPages, setMaxPages] = useState(1);
     const [files, setFiles] = useState<File[]>([]);
     const [blockBackground, setBlockBackground] = useState(<></>);
     useEffect(()=>{
-        setBlockBackground(<BlockBackground></BlockBackground>)
-        getFiles()
+        setBlockBackground(<BlockBackground></BlockBackground>);
+        getFiles();
+        getSettings().then(out => {
+            setDownloadCaptcha(out.downloadcaptcha)
+        })
     }, []);
     useEffect(()=>{
         getFiles();
@@ -52,6 +57,12 @@ export default function Login() {
         setMaxPages(resultJson["maxpages"]);
     }
 
+    async function downloadFile(id: string) {
+        const path = `/api/files/${id}`;
+        if (!downloadCaptcha) return window.location.replace(path);
+        window.location.replace(`${path}?altcha=${verification}`);
+    }
+
     return (
     <>
         {blockBackground}
@@ -64,6 +75,14 @@ export default function Login() {
                     <h1>File Repository</h1>
                 </div>
                 <div className="d-flex m-1 p-3 flex-column semi-transparent-box" style={{width: "1000px", maxWidth: "100%"}}>
+                    {
+                        downloadCaptcha
+                        ? <>
+                            <b>Complete captcha in order to download anything:</b>
+                            <altcha-widget className="mb-3" onverified={(e)=>setVerification(e.detail.payload)} challengeurl="/api/altcha"></altcha-widget>
+                        </>
+                        : <></>
+                    }
                     <div className="d-flex">
                         <div className="filerepo-big-labels" style={{width: "40%"}}>
                             <h4>Filename</h4>
@@ -91,7 +110,7 @@ export default function Login() {
                                 </p>
                             </div>
                             <div style={{width: "25%"}}>
-                                <Button className="w-100 p-0 bg-primary text-white" href={`/api/files/${file.id}`}>download</Button>
+                                <Button className="w-100 p-0 bg-primary text-white" onClick={()=>downloadFile(file.id)}>download</Button>
                             </div>
                         </div>)
                     }
